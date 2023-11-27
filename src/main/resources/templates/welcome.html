@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+Welcome
+<table>
+    <thead>
+    <tr>
+        <th> Championship name </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${championshipList.empty}">
+        <td colspan="2"> No Championships available </td>
+    </tr>
+    <tr th:each="championship : ${championshipList}">
+        <td><span th:text="${championship.name}"> Championship name </span></td>
+        <table>
+            <thead>
+                <tr>
+                    <th> Club name </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="club : ${championship.clubList}">
+                    <td><a th:href="@{'/welcome/editClub.html?id=' + ${club.id}}"><span th:text="${club.name}"> Club name </span></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>
