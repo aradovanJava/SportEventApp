@@ -42,8 +42,6 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        CookieClearingLogoutHandler cookies = new CookieClearingLogoutHandler("our-custom-cookie");
-
         return http
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers(toH2Console()))
